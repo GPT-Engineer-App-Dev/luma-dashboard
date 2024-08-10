@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { AlertCircle, BarChart3, Cpu, Users } from 'lucide-react';
 import LLMUsageChart from '../components/LLMUsageChart';
 import PerformanceMetrics from '../components/PerformanceMetrics';
@@ -28,12 +27,7 @@ const Index = () => {
   }, []);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gray-100 p-8"
-    >
+    <div className="min-h-screen bg-gray-100 p-8">
       <h1 className="text-4xl font-bold mb-8">AI Application Dashboard</h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -51,7 +45,7 @@ const Index = () => {
       <div className="mb-8">
         <RecentRequests />
       </div>
-    </motion.div>
+    </div>
   );
 };
 
