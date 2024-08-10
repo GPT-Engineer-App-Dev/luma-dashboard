@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AlertCircle, BarChart3, Cpu, Users } from 'lucide-react';
+import { BarChart3, Users, Cpu, AlertCircle } from 'lucide-react';
 import LLMUsageChart from '../components/LLMUsageChart';
 import PerformanceMetrics from '../components/PerformanceMetrics';
 import RecentRequests from '../components/RecentRequests';
@@ -28,13 +28,13 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
-      <h1 className="text-4xl font-bold mb-8">AI Application Dashboard</h1>
+      <h1 className="text-3xl font-semibold mb-8 text-gray-900">AI Application Dashboard</h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <StatCard title="Total Requests" value={stats.totalRequests.toString()} icon={<BarChart3 className="h-8 w-8 text-blue-500" />} />
-        <StatCard title="Active Users" value={stats.activeUsers.toString()} icon={<Users className="h-8 w-8 text-green-500" />} />
-        <StatCard title="Avg. Response Time" value={`${stats.avgResponseTime}ms`} icon={<Cpu className="h-8 w-8 text-yellow-500" />} />
-        <StatCard title="Error Rate" value={`${stats.errorRate.toFixed(2)}%`} icon={<AlertCircle className="h-8 w-8 text-red-500" />} />
+        <StatCard title="Total Requests" value={stats.totalRequests.toString()} icon={<BarChart3 className="h-6 w-6" />} />
+        <StatCard title="Active Users" value={stats.activeUsers.toString()} icon={<Users className="h-6 w-6" />} />
+        <StatCard title="Avg. Response Time" value={`${stats.avgResponseTime}ms`} icon={<Cpu className="h-6 w-6" />} />
+        <StatCard title="Error Rate" value={`${stats.errorRate.toFixed(2)}%`} icon={<AlertCircle className="h-6 w-6" />} />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">

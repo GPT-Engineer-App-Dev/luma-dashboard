@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import DashboardCard from './DashboardCard';
 import AnimatedCounter from './AnimatedCounter';
 
 const StatCard = ({ title, value, icon }) => (
@@ -8,22 +7,18 @@ const StatCard = ({ title, value, icon }) => (
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5 }}
+    className="bg-white rounded-lg shadow-apple p-6"
   >
-    <DashboardCard title={title}>
-      <div className="flex items-center justify-between">
-        <div className="text-2xl font-bold">
+    <div className="flex items-center justify-between">
+      <div>
+        <h3 className="text-sm font-semibold text-gray-500 mb-1">{title}</h3>
+        <div className="text-3xl font-bold text-gray-900">
           <AnimatedCounter value={parseFloat(value)} />
           {isNaN(parseFloat(value)) && value}
         </div>
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ type: "spring", stiffness: 260, damping: 20 }}
-        >
-          {icon}
-        </motion.div>
       </div>
-    </DashboardCard>
+      <div className="text-primary">{icon}</div>
+    </div>
   </motion.div>
 );
 

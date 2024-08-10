@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Progress } from "@/components/ui/progress";
-import DashboardCard from './DashboardCard';
 
 const PerformanceMetrics = () => {
   const [metrics, setMetrics] = useState({
@@ -27,32 +26,32 @@ const PerformanceMetrics = () => {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
+      className="bg-white rounded-lg shadow-apple p-6"
     >
-      <DashboardCard title="Performance Metrics">
-        <div className="space-y-4">
-          <div>
-            <div className="flex justify-between mb-1">
-              <span className="text-sm font-medium">Accuracy</span>
-              <span className="text-sm font-medium">{metrics.accuracy.toFixed(1)}%</span>
-            </div>
-            <Progress value={metrics.accuracy} className="w-full" />
+      <h3 className="text-lg font-semibold mb-4">Performance Metrics</h3>
+      <div className="space-y-4">
+        <div>
+          <div className="flex justify-between mb-1">
+            <span className="text-sm font-medium text-gray-700">Accuracy</span>
+            <span className="text-sm font-medium text-gray-700">{metrics.accuracy.toFixed(1)}%</span>
           </div>
-          <div>
-            <div className="flex justify-between mb-1">
-              <span className="text-sm font-medium">Response Time</span>
-              <span className="text-sm font-medium">{(metrics.responseTime * 2).toFixed(0)}ms</span>
-            </div>
-            <Progress value={metrics.responseTime} className="w-full" />
-          </div>
-          <div>
-            <div className="flex justify-between mb-1">
-              <span className="text-sm font-medium">User Satisfaction</span>
-              <span className="text-sm font-medium">{metrics.userSatisfaction.toFixed(1)}%</span>
-            </div>
-            <Progress value={metrics.userSatisfaction} className="w-full" />
-          </div>
+          <Progress value={metrics.accuracy} className="w-full h-2 bg-gray-200" indicatorClassName="bg-primary" />
         </div>
-      </DashboardCard>
+        <div>
+          <div className="flex justify-between mb-1">
+            <span className="text-sm font-medium text-gray-700">Response Time</span>
+            <span className="text-sm font-medium text-gray-700">{(metrics.responseTime * 2).toFixed(0)}ms</span>
+          </div>
+          <Progress value={metrics.responseTime} className="w-full h-2 bg-gray-200" indicatorClassName="bg-primary" />
+        </div>
+        <div>
+          <div className="flex justify-between mb-1">
+            <span className="text-sm font-medium text-gray-700">User Satisfaction</span>
+            <span className="text-sm font-medium text-gray-700">{metrics.userSatisfaction.toFixed(1)}%</span>
+          </div>
+          <Progress value={metrics.userSatisfaction} className="w-full h-2 bg-gray-200" indicatorClassName="bg-primary" />
+        </div>
+      </div>
     </motion.div>
   );
 };

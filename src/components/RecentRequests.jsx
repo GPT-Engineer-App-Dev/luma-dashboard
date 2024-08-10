@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import DashboardCard from './DashboardCard';
 
 const initialRequests = [
   { id: 1, model: 'GPT-4', type: 'Text Generation', status: 'Completed', time: '2 min ago' },
@@ -34,37 +33,44 @@ const RecentRequests = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
+      className="bg-white rounded-lg shadow-apple p-6"
     >
-      <DashboardCard title="Recent Requests">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Model</TableHead>
-              <TableHead>Type</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Time</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <AnimatePresence>
-              {requests.map((request) => (
-                <motion.tr
-                  key={request.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <TableCell>{request.model}</TableCell>
-                  <TableCell>{request.type}</TableCell>
-                  <TableCell>{request.status}</TableCell>
-                  <TableCell>{request.time}</TableCell>
-                </motion.tr>
-              ))}
-            </AnimatePresence>
-          </TableBody>
-        </Table>
-      </DashboardCard>
+      <h3 className="text-lg font-semibold mb-4">Recent Requests</h3>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="text-gray-500">Model</TableHead>
+            <TableHead className="text-gray-500">Type</TableHead>
+            <TableHead className="text-gray-500">Status</TableHead>
+            <TableHead className="text-gray-500">Time</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <AnimatePresence>
+            {requests.map((request) => (
+              <motion.tr
+                key={request.id}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <TableCell className="font-medium">{request.model}</TableCell>
+                <TableCell>{request.type}</TableCell>
+                <TableCell>
+                  <span className={`px-2 py-1 rounded-full text-xs font-semibold
+                    ${request.status === 'Completed' ? 'bg-green-100 text-green-800' : 
+                      request.status === 'Processing' ? 'bg-blue-100 text-blue-800' : 
+                      'bg-red-100 text-red-800'}`}>
+                    {request.status}
+                  </span>
+                </TableCell>
+                <TableCell className="text-gray-500">{request.time}</TableCell>
+              </motion.tr>
+            ))}
+          </AnimatePresence>
+        </TableBody>
+      </Table>
     </motion.div>
   );
 };
